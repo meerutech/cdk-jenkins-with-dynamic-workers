@@ -1,5 +1,5 @@
 import { App } from '@aws-cdk/core';
-import { ImageBuilderStack } from './stacks/imageBuilderStack';
+//import { ImageBuilderStack } from './stacks/imageBuilderStack';
 import { JenkinsStack } from './stacks/jenkinsStack';
 
 // for development, use account/region from cdk cli
@@ -18,13 +18,13 @@ const secrets = {
 
 const app = new App();
 
-new ImageBuilderStack(app, 'image-builder-stack-dev', { env: devEnv });
+//new ImageBuilderStack(app, 'image-builder-stack-dev', { env: devEnv });
 // new ImageBuilderStack(app, 'my-stack-prod', { env: prodEnv });
 
 new JenkinsStack(app, 'jenkins-stack-dev', {
-  useDefaultVpc: true,
-  usePublicSubnets: true,
-  windowsWorkerAmi: 'ami-0209072377fde2f62',
+  useDefaultVpc: false,
+  usePublicSubnets: false,
+  //windowsWorkerAmi: 'ami-0209072377fde2f62',
   env: devEnv,
   githubTokenSecretArn: secrets.githubTokenSecretArn!,
   awsKeyPairSecretArn: secrets.awsKeyPairSecretArn!,
